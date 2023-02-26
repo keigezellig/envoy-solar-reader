@@ -7,7 +7,7 @@ import yaml
 
 from dataretriever import DataRetriever, LocalDataRetriever
 from envoy_solar_reader import EnvoySolarReader
-from mqtt_service import MqttService
+from mqtt_service import MqttService, MqttConnectionException
 import paho.mqtt.client as mqtt
 
 logger = logging.getLogger(__name__)
@@ -60,8 +60,13 @@ if __name__ == '__main__':
     logger.info(f'Reporting interval = {mqtt_section["report_interval_seconds"]} seconds ')
     mqtt_service.setup()
 
+
     TOPIC = 'envoy/production'
     while True:
-        data = envoy_solar_reader.get_production_data()
-        mqtt_service.publish_message(TOPIC, data)
-        sleep(mqtt_section['report_interval_seconds'])
+        try:
+            data = envoy_solar_reader.get_production_data()
+            mqtt_service.publish_message(TOPIC, data)
+            sleep(mqtt_section['report_interval_seconds'])
+        except Exception as e:
+            logger.error(f"Something went wrong. Retrying after {mqtt_section['report_interval_seconds']}")
+            sleep(mqtt_section['report_interval_seconds'])

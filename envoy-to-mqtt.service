@@ -1,0 +1,13 @@
+[Unit]
+Description=Envoy solar reader systemd service
+After=multi-user.target
+
+[Service]
+Type=simple
+Restart=always
+WorkingDirectory=/home/pi/envoy_solar_reader
+ExecStart=./run.sh
+StandardOutput=/var/log/envoy_solar_reader.log
+
+[Install]
+WantedBy=multi-user.target
