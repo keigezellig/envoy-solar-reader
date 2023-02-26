@@ -7,6 +7,8 @@ import yaml
 
 from dataretriever import DataRetriever, LocalDataRetriever
 from envoy_solar_reader import EnvoySolarReader
+from mqtt_service import MqttService
+import paho.mqtt.client as mqtt
 
 logger = logging.getLogger(__name__)
 
@@ -52,4 +54,14 @@ if __name__ == '__main__':
                                                envoy_serial=local_section['envoy_serial'])
     envoy_solar_reader: EnvoySolarReader = EnvoySolarReader(reader=reader)
 
-    print(envoy_solar_reader.get_production_data())
+    mqtt_section = total_config['mqtt']
+    mqtt_client: mqtt.Client = mqtt.Client()
+    mqtt_service: MqttService = MqttService(host=mqtt_section['host'], port=mqtt_section['port'], username=mqtt_section['username'], password=mqtt_section['password'], mqtt_client=mqtt_client)
+
+    mqtt_service.setup()
+
+    TOPIC = 'envoy/production'
+    while True:
+        data = envoy_solar_reader.get_production_data()
+        mqtt_service.publish_message(TOPIC, data)
+        sleep(mqtt_section['report_interval_seconds'])
