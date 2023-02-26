@@ -57,7 +57,7 @@ if __name__ == '__main__':
     mqtt_section = total_config['mqtt']
     mqtt_client: mqtt.Client = mqtt.Client()
     mqtt_service: MqttService = MqttService(host=mqtt_section['host'], port=mqtt_section['port'], username=mqtt_section['username'], password=mqtt_section['password'], mqtt_client=mqtt_client)
-
+    logger.info(f'Reporting interval = {mqtt_section["report_interval_seconds"]} seconds ')
     mqtt_service.setup()
 
     TOPIC = 'envoy/production'

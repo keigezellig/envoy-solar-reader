@@ -3,7 +3,7 @@ mqtt:
   port: 1883
   username: homeassistant
   password: azi9Hueyah0Ues1ra2Koh3atho8haph0eeMe6ihahweicohngeShu9oosh7aemai
-  report_interval_seconds: 10
+  report_interval_seconds: 300
 
 local:
   envoy_host: 192.168.2.98
