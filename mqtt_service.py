@@ -38,7 +38,7 @@ class MqttService:
                 raise MqttConnectionException('Cannot connect to broker, giving up')
 
     def publish_message(self, topic: str, json_payload: str):
-        logger.debug(f"Publishing {json_payload} to {topic}")
+        logger.info(f"Publishing {json_payload} to {topic}")
         self._mqtt_client.publish(topic=topic, payload=json_payload)
 
 

@@ -8,6 +8,8 @@ from requests import Response
 from models import ProductionData
 
 logger = logging.getLogger(__name__)
+logging.getLogger("requests").setLevel(logging.ERROR)
+logging.getLogger("urllib3").setLevel(logging.ERROR)
 
 
 class DataRetriever(ABC):
