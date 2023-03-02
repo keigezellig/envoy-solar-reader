@@ -1,0 +1,13 @@
+mqtt:
+  host: <mqtt hostname>
+  port: <mqtt port>
+  username: <mqtt username>
+  password: <mqtt password>
+  report_interval_seconds: <interval after which a message is sent to mqtt)
+
+local:
+  envoy_host: <host of your LOCAL envoy gateway>
+  envoy_user: <enphase username>
+  envoy_password: <enphase password>
+  envoy_serial: <serial number of your gateway>
+
