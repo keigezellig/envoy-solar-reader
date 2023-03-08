@@ -5,9 +5,9 @@ from time import sleep
 
 import yaml
 
-from dataretriever import DataRetriever, LocalDataRetriever
-from envoy_solar_reader import EnvoySolarReader
-from mqtt_service import MqttService, MqttConnectionException
+from envoy_solar_reader.dataretriever import DataRetriever, LocalDataRetriever
+from envoy_solar_reader.envoy_solar_reader import EnvoySolarReader
+from envoy_solar_reader.mqtt_service import MqttService
 import paho.mqtt.client as mqtt
 
 logger = logging.getLogger(__name__)
@@ -26,9 +26,7 @@ def create_argparser():
 
     return parser
 
-
-if __name__ == '__main__':
-
+def run():
     argparser = create_argparser()
     args = argparser.parse_args()
 
@@ -71,3 +69,7 @@ if __name__ == '__main__':
         except Exception as e:
             logger.error(f"Something went wrong. Retrying after {mqtt_section['report_interval_seconds']}")
             sleep(mqtt_section['report_interval_seconds'])
+
+if __name__ == '__main__':
+    run()
+

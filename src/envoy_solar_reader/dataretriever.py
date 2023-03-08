@@ -5,7 +5,7 @@ from abc import ABC, abstractmethod
 import requests
 from requests import Response
 
-from models import ProductionData
+from envoy_solar_reader.models import ProductionData
 
 logger = logging.getLogger(__name__)
 logging.getLogger("requests").setLevel(logging.ERROR)

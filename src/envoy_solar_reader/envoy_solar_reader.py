@@ -1,6 +1,6 @@
 import json
 
-from dataretriever import DataRetriever
+from envoy_solar_reader.dataretriever import DataRetriever
 
 
 class EnvoySolarReader:

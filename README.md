@@ -23,7 +23,7 @@ In the future data for each individual inverter will also be retrieved.
 
 ## Quick start
 - Checkout this repository and create a *config.yaml* file with your desired settings (see *config_example.yaml* for the possible settings
-and their descriptions)
+  and their descriptions)
 - Make *create_venv.sh* and *run.sh* executable by executing `chmod +x <filename>`
 - Execute `./create_venv.sh` to create a Python virtual environment with all the required dependencies installed
 - Execute `./run.sh` to start the application. It starts default in *local* mode.
@@ -87,11 +87,11 @@ mqtt:
 
 ```
 - Configure the energy dashboard with the `Solar energy produced today` sensor.
-- Put the `Current total solar power` on a dashboard  
+- Put the `Current total solar power` on a dashboard
 
 Some screenshots:
 
-![screenshot_energy_dashboard](screenshot_energy_dashboard.png)  
+![screenshot_energy_dashboard](screenshot_energy_dashboard.png)
 
 ![screenshot_dashboard_with_current_power.png](screenshot_dashboard_with_current_power.png)
 
@@ -109,3 +109,14 @@ To set this up: (a sample systemd service definition is provided in this reposit
 
 
 
+## Contributing
+
+Interested in contributing? Check out the contributing guidelines. Please note that this project is released with a Code of Conduct. By contributing to this project, you agree to abide by its terms.
+
+## License
+
+`envoy_solar_reader` was created by Maarten Joosten. It is licensed under the terms of the MIT license.
+
+## Credits
+
+`envoy_solar_reader` was created with [`cookiecutter`](https://cookiecutter.readthedocs.io/en/latest/) and the `py-pkgs-cookiecutter` [template](https://github.com/py-pkgs/py-pkgs-cookiecutter).
