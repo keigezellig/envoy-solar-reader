@@ -24,10 +24,23 @@ In the future data for each individual inverter will also be retrieved.
 ## Quick start
 - Checkout this repository and create a *config.yaml* file with your desired settings (see *config_example.yaml* for the possible settings
 and their descriptions)
-- Make *create_venv.sh* and *run.sh* executable by executing `chmod +x <filenanme>`
+- Make *create_venv.sh* and *run.sh* executable by executing `chmod +x <filename>`
 - Execute `./create_venv.sh` to create a Python virtual environment with all the required dependencies installed
 - Execute `./run.sh` to start the application. It starts default in *local* mode.
 - The data is now retrieved every interval as specified in the config and posted to a MQTT topic *envoy/production*
+
+## Command line options
+```
+usage: core.py [-h] [--config CONFIG] [--mode {local,cloud}] [--loglevel {DEBUG,INFO,WARNING,ERROR,CRITICAL}]
+
+options:
+  -h, --help            show this help message and exit
+  --config CONFIG       Full path to config file. If left empty, program will try to load config.yaml from the current directory
+  --mode {local,cloud}  Use api on local device or use cloud based api
+  --loglevel {DEBUG,INFO,WARNING,ERROR,CRITICAL}
+                        Minimum loglevel
+
+```
 
 
 ## Example setup for HomeAssistant
