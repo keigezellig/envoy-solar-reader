@@ -15,13 +15,14 @@ logger = logging.getLogger(__name__)
 
 def create_argparser():
     parser = argparse.ArgumentParser()
+
     parser.add_argument("--config",
                         help="Full path to config file. If left empty, program will try to load config.yaml from the current directory",
                         default="./config.yaml")
     parser.add_argument("--mode", help="Use api on local device (soon to be deprecated) or use cloud based api ",
                         choices=['local', 'cloud'], default="local")
     parser.add_argument("--loglevel", help="Minimum loglevel",
-                        choices=['DEBUG', 'INFO', 'WARNING', 'ERROR', 'CRITICAL'], default="DEBUG")
+                        choices=['DEBUG', 'INFO', 'WARNING', 'ERROR', 'CRITICAL'], default="INFO")
 
     return parser
 
