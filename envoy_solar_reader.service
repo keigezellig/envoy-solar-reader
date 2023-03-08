@@ -5,7 +5,7 @@ After=multi-user.target
 [Service]
 Type=simple
 Restart=always
-WorkingDirectory=/home/dsmr/envoy_solar_reader
+WorkingDirectory=/home/dsmr/envoy_solar_reader          # Replace this with the directory which contains the application
 ExecStart=./run.sh
 StandardOutput=/var/log/envoy_solar_reader.log
 

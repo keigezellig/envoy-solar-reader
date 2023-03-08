@@ -18,7 +18,7 @@ In the future data for each individual inverter will also be retrieved.
 
 ## System requirements
 - A Linux installation (sorry, Windows isn't supported (yet))
-- Python 3.9+ + tooling (pip, virtualenv)
+- Python 3.10+ + tooling (pip, virtualenv)
 
 
 ## Quick start
@@ -47,7 +47,7 @@ options:
 This is how my setup with Home Assistant works:
 - In Home Assistant install the MQTT integration, so that there is a MQTT broker active on the HA instance.
 - Install the Envoy Solar Reader on a separate device in your network (i had a spare Raspberry Pi lying around) and (optionally) create
-  a systemd service to start the application when booting the device 
+  a systemd service to start the application when booting the device. (see below)
 - Contents of *config.yaml*:
 ```yaml
 mqtt:
@@ -97,6 +97,15 @@ Some screenshots:
 
 
 ### Systemd service
-TODO
+I created a systemd service to start the application after reboot.  
+To set this up: (a sample systemd service definition is provided in this repository (in *envoy_solar_reader.service*) )
+- Modify the *envoy_solar_reader.service* to your liking. (see [here](https://www.digitalocean.com/community/tutorials/understanding-systemd-units-and-unit-files)
+  and [here](https://medium.com/codex/setup-a-python-script-as-a-service-through-systemctl-systemd-f0cc55a42267) for more in-depth information)
+- Copy the service definition file to `/etc/systemd/system`
+- Execute `sudo systemctl daemon-reload` to reload the systemd daemon
+- Execute `sudo systemctl enable envoy_solar_reader.service` to enable restarting of the service after a reboot
+- Execute `sudo systemctl start envoy_solar_reader.service` to start the application/service
+- Logs can be viewed by executing `sudo journalctl -u envoy_solar_reader.service`
+
 
 
