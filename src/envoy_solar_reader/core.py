@@ -2,6 +2,7 @@ import argparse
 import logging
 import os
 from time import sleep
+from envoy_solar_reader import __version__
 
 import yaml
 
@@ -21,8 +22,11 @@ def create_argparser():
                         default="./config.yaml")
     parser.add_argument("--mode", help="Use api on local device (soon to be deprecated) or use cloud based api ",
                         choices=['local', 'cloud'], default="local")
-    parser.add_argument("--loglevel", help="Minimum loglevel",
+    parser.add_argument("--loglevel", help="Minimum loglevel, default is INFO",
                         choices=['DEBUG', 'INFO', 'WARNING', 'ERROR', 'CRITICAL'], default="INFO")
+    parser.add_argument("--version", help="Show version", action='store_true')
+                        
+                        
 
     return parser
 
@@ -34,6 +38,10 @@ def run():
     logging.basicConfig(
         level=loglevel, format='%(asctime)s - %(levelname)s - %(message)s')
 
+    if args.version:
+        print (__version__)
+        exit(0)
+        
     if args.mode == 'cloud':
         logger.critical('Cloud api is not implemented yet. Exiting..')
         exit(2)

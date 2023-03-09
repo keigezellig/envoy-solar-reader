@@ -1,0 +1,4 @@
+feature: VcurrMaj.VcurrMin.VcurrPatch.devCOMMIT_SHA1(base10)
+develop: VcurrMaj.VcurrMin.VcurrPatch.devCOMMIT_SHA1(base10)
+release: VcurrMaj+1|VCurrMin+1.0
+hotfix: VcurrMaj+1.VCurrMin+1.VCurrPatch+1
