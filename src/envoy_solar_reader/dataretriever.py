@@ -1,6 +1,7 @@
 import json
 import logging
 from abc import ABC, abstractmethod
+from typing import List
 
 import requests
 from requests import Response
@@ -15,6 +16,9 @@ logging.getLogger("urllib3").setLevel(logging.ERROR)
 class DataRetriever(ABC):
     @abstractmethod
     def get_production_data(self) -> ProductionData:
+        pass
+    @abstractmethod
+    def get_inverter_data(self) -> List[InverterData]:
         pass
 
 

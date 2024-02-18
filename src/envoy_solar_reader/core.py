@@ -25,10 +25,9 @@ def create_argparser():
     parser.add_argument("--loglevel", help="Minimum loglevel, default is INFO",
                         choices=['DEBUG', 'INFO', 'WARNING', 'ERROR', 'CRITICAL'], default="INFO")
     parser.add_argument("--version", help="Show version", action='store_true')
-                        
-                        
 
     return parser
+
 
 def run():
     argparser = create_argparser()
@@ -39,9 +38,9 @@ def run():
         level=loglevel, format='%(asctime)s - %(levelname)s - %(message)s')
 
     if args.version:
-        print (__version__)
+        print(__version__)
         exit(0)
-        
+
     if args.mode == 'cloud':
         logger.critical('Cloud api is not implemented yet. Exiting..')
         exit(2)
@@ -63,21 +62,22 @@ def run():
 
     mqtt_section = total_config['mqtt']
     mqtt_client: mqtt.Client = mqtt.Client()
-    mqtt_service: MqttService = MqttService(host=mqtt_section['host'], port=mqtt_section['port'], username=mqtt_section['username'], password=mqtt_section['password'], mqtt_client=mqtt_client)
+    mqtt_service: MqttService = MqttService(host=mqtt_section['host'], port=mqtt_section['port'],
+                                            username=mqtt_section['username'], password=mqtt_section['password'],
+                                            mqtt_client=mqtt_client)
     logger.info(f'Reporting interval = {mqtt_section["report_interval_seconds"]} seconds ')
     mqtt_service.setup()
-
 
     TOPIC = 'envoy/production'
     while True:
         try:
             data = envoy_solar_reader.get_production_data()
-            mqtt_service.publish_message(TOPIC, data)
+            #mqtt_service.publish_message(TOPIC, data)
             sleep(mqtt_section['report_interval_seconds'])
         except Exception as e:
             logger.error(f"Something went wrong. Retrying after {mqtt_section['report_interval_seconds']}")
             sleep(mqtt_section['report_interval_seconds'])
 
+
 if __name__ == '__main__':
     run()
-
